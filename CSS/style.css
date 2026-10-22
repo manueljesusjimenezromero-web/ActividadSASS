@@ -56,7 +56,7 @@ body {
 .btn-tema:hover { transform: translateY(-4px); color: #9B2335; }
  
 .btn-tema { cursor: pointer; user-select: none; }
-.btn-tema::after { content: "Cambiar a modo oscuro"; }
+.btn-tema::after { content: "modo oscuro"; }
  
 .toggle-input { position: absolute; opacity: 0; pointer-events: none; }
 .toggle-input:focus-visible + .btn-tema {

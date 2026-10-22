@@ -84,7 +84,7 @@ body {
           user-select: none;
 }
 .btn-tema::after {
-  content: "Cambiar a modo oscuro";
+  content: "modo oscuro";
 }
 
 .toggle-input {
