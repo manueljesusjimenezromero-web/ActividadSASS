@@ -1,92 +1,266 @@
-
-/* VARIABLES */
-
-$fondo: #F2E0B6;
-$oscuro: #1A1208;
-$azul: #002395;
+// Variables
+$crema: #F2E0B6;
+$negro: #1A1208;
 $burdeos: #9B2335;
-$azul-claro: #6C86E8;
-$blanco: #ffffff;
+$azul: #002395;
+$blanco: #fff;
 $tarjeta: #F8EBCC;
 
-/* FUNCION */
+// Mixin para reutilizar botones
+@mixin boton {
+  display: inline-block;
+  padding: 12px 25px;
+  background: $crema;
+  color: $burdeos;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 999px;
+  transition: transform .2s;
 
-@function rem($px) {
-  @return ($px / 16) * 1rem;
+  &:hover { transform: translateY(-4px); }
 }
 
-/* MIXIN */
+// Función propia para calcular espacios
+@function espacio($n) {
+  @return $n * 4px;
+}
 
-@mixin elevar {
+// Base y cabecera
+html { scroll-behavior: smooth; }
+section { scroll-margin-top: 70px; }
+
+body {
+  font-family: Georgia, "Times New Roman", serif;
+  background: $crema;
+  color: $negro;
+}
+
+.site-header {
+  background: $negro;
+  color: $crema;
+
+  .navbar-brand, .nav-link { color: $crema; }
+}
+
+.tricolor-bar span { width: 8px; height: 32px; }
+.az { background: $azul; }
+.bl { background: $blanco; }
+.ro { background: $burdeos; }
+.logo-text p { font-size: 12px; }
+.logo-title { font-size: 18px; }
+
+.tab {
+  padding-bottom: 4px !important;
+  border-bottom: 2px solid transparent;
+
+  &:hover, &:focus {
+    color: $crema;
+    border-bottom-color: currentColor;
+  }
+}
+
+// Botones: función nativa darken()
+.btn-burdeos {
+  background: $burdeos;
+  color: $crema;
+  border: 0;
+
+  &:hover { background: darken($burdeos, 8%); }
+}
+
+.btn-cta, .btn-tema { @include boton; }
+.btn-tema {
+  cursor: pointer;
+  user-select: none;
+
+  &::after { content: "Cambiar a modo oscuro"; }
+}
+
+.toggle-input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+
+  &:focus-visible + .btn-tema {
+    outline: 2px solid #6C86E8;
+    outline-offset: 2px;
+  }
+}
+
+// Hero
+.hero {
+  height: 600px;
+  min-height: 450px;
+  color: $crema;
+}
+
+.hero-img { object-fit: cover; }
+.hero-overlay-h { background: linear-gradient(rgba(26,18,8,.9), rgba(26,18,8,.2)); }
+.hero-overlay-v { background: linear-gradient(rgba(26,18,8,.7), transparent 50%); }
+.hero-tricolor span { flex: 1; height: 5px; }
+.hero-text { max-width: 550px; }
+.hero-title { font-weight: 700; }
+.rule { width: 40px; height: 2px; background: $burdeos; }
+
+// Secciones
+.eyebrow {
+  color: $azul;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 13px;
+}
+
+.section-head { border-bottom: 1px solid rgba(26,18,8,.15); }
+
+.section-title {
+  font-size: 56px;
+  font-weight: normal;
+  line-height: 1.05;
+
+  em { color: $burdeos; }
+}
+
+.section-desc {
+  max-width: 620px;
+  margin: 0 0 15px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: espacio(2);
+  padding: 6px 14px;
+  border: 1px solid rgba(26,18,8,.2);
+  border-radius: 999px;
+  font-size: 13px;
+
+  &::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: $burdeos;
+  }
+}
+
+// Tarjetas
+.card {
+  background: $tarjeta;
+  color: $negro;
+  border: 1px solid $negro;
+  border-radius: 0;
   transition: transform .2s;
 
   &:hover {
     transform: translateY(-4px);
+    .card-img-wrap img { transform: scale(1.05); }
   }
 }
 
-body {
-  background-color: $fondo;
-  color: $oscuro;
-}
+.card-body { padding: 18px 20px 22px; }
+.card-body h3 { font-family: inherit; }
+.card-text { font-size: 14px; line-height: 1.6; }
 
-.site-header {
-  background-color: $oscuro;
-  color: $fondo;
-}
+.card-img-wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
 
-.az {
-  background-color: $azul;
-}
-
-.bl {
-  background-color: $blanco;
-}
-
-.ro {
-  background-color: $burdeos;
-}
-
-.btn-burdeos {
-  background-color: $burdeos;
-  color: $fondo;
-
-  &:hover {
-    background-color: darken($burdeos, 10%);
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .4s;
   }
 }
 
-.card {
-  background-color: $tarjeta;
-  color: $oscuro;
-  border: 1px solid $oscuro;
+.card-tag { position: absolute; left: 12px; bottom: 12px; color: $blanco; }
 
-  @include elevar;
+.card-retrato {
+  .card-img-wrap { aspect-ratio: 1 / 1; img { object-position: top; } }
+  .eyebrow { display: block; margin-bottom: 4px; font-size: 11px; }
+  .card-body { padding: 14px 16px 16px; }
+  .card-text { font-size: 13px; line-height: 1.5; }
 }
 
-.section-title {
-  font-size: rem(56);
+.card.article, .card.info {
+  padding: 25px;
+  border: 1px solid rgba(26,18,8,.15);
+  border-top: 3px solid $burdeos;
+  border-radius: 8px;
 }
 
-.rule {
-  background-color: $burdeos;
+.article {
+  &:hover { box-shadow: 0 8px 18px rgba(26,18,8,.15); }
+  h3 { margin: 0 0 4px; font-size: 11px; font-weight: normal; letter-spacing: .12em; text-transform: uppercase; color: $azul; }
+  h4 { margin: 0 0 10px; font-size: 22px; font-weight: normal; line-height: 1.2; }
+  p { margin: 0; font-size: 13px; line-height: 1.5; font-style: italic; }
 }
 
-.eyebrow {
-  color: $azul;
+.article-num, .info-num { color: $burdeos; font-size: 14px; font-style: italic; }
+.article-num { margin-bottom: 8px; }
+.info-num { margin-right: 6px; }
+.info h3 { margin: 0 0 20px; font-size: 26px; font-weight: normal; }
+
+.info-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 0;
+  font-size: 14px;
+  border-bottom: 1px dashed rgba(26,18,8,.2);
+
+  &:last-child { border-bottom: 0; }
 }
 
-.badge-azul {
-  border: 1px solid $azul;
-  color: $azul;
+.info-list em { opacity: .7; }
+.destacado { color: $burdeos; }
+.badge-azul { background: transparent; border: 1px solid $azul; color: $azul; font-size: 12px; }
+.info-dir { margin: 0 0 15px; font-weight: bold; line-height: 1.6; }
+.info-text { margin: 0 0 20px; font-size: 14px; line-height: 1.6; opacity: .8; }
+.info-link { align-self: flex-start; color: $burdeos; font-size: 14px; font-weight: bold; }
+
+// Cita y llamada a la acción
+.quote {
+  padding: 28px 32px;
+  border-left: 4px solid $azul;
+  background: rgba($negro, .05);
+
+  blockquote { font-size: 22px; line-height: 1.4; }
+  cite { font-size: 11px; font-style: normal; letter-spacing: .12em; text-transform: uppercase; color: $azul; }
 }
+
+.quote-mark { font-size: 72px; line-height: .8; color: $burdeos; }
 
 .visit-cta {
-  background-color: $burdeos;
-  color: $fondo;
+  padding: 35px 25px;
+  background: $burdeos;
+  color: $crema;
+  border-radius: 8px;
+
+  h3 { margin: 0 0 6px; font-size: 28px; font-style: italic; font-weight: normal; }
+  p { font-size: 14px; opacity: .85; }
+  .btn-cta { color: $burdeos; }
 }
 
-footer {
-  background-color: $oscuro;
-  color: $fondo;
+// Footer
+footer { background: $negro; color: $crema; }
+.footer-strip span { flex: 1; height: 5px; }
+.footer-brand p { margin: 0; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; }
+.footer-brand h3 { margin: 6px 0 10px; font-size: 22px; }
+.footer-brand .addr { font-size: 13px; opacity: .7; text-transform: none; letter-spacing: normal; }
+.footer-motto { font-size: 18px; font-style: italic; letter-spacing: 2px; }
+.footer-info { font-size: 13px; p { margin: 0 0 6px; } }
+.footer-copy { border-top: 1px solid rgba($crema,.15); padding: 15px 30px; text-align: center; font-size: 12px; }
+
+// Responsive
+@media (min-width: 992px) { .visit-cta { padding: 35px 45px; } }
+@media (max-width: 991.98px) { .header-acciones { padding: 10px 0 4px; } }
+@media (max-width: 575.98px) {
+  .section-title { font-size: 42px; }
+  .btn-tema { padding: 8px 12px; font-size: 13px; }
 }
