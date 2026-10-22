@@ -1,5 +1,6 @@
 
 
+
 /* ---------- Base ---------- */
 html { scroll-behavior: smooth; }
 section { scroll-margin-top: 70px; }
@@ -57,7 +58,7 @@ body {
 .btn-tema:hover { transform: translateY(-4px); color: #9B2335; }
  
 .btn-tema { cursor: pointer; user-select: none; }
-.btn-tema::after { content: "Cambiar a modo oscuro"; }
+.btn-tema::after { content: "modo oscuro"; }
  
 .toggle-input { position: absolute; opacity: 0; pointer-events: none; }
 .toggle-input:focus-visible + .btn-tema {
@@ -160,7 +161,7 @@ body {
 .card-retrato .card-body { padding: 14px 16px 16px; }
 .card-retrato .card-text { font-size: 13px; line-height: 1.5; }
  
-/* Tarjetas de texto */
+/* Tarjetas de texto: Derechos (.article) y Visitar (.info) */
 .card.article,
 .card.info {
   padding: 25px;
@@ -278,8 +279,16 @@ footer { background-color: #1A1208; color: #F2E0B6; }
 @media (min-width: 992px) {
   .visit-cta { padding: 35px 45px; }
 }
-@media (max-width: 991.98px) {
+/* Móvil (menos de 768px): Bootstrap pliega el menú en el botón hamburguesa */
+@media (max-width: 767.98px) {
   .header-acciones { padding: 10px 0 4px; }
+}
+/* De 768 a 991px: el menú sigue en línea, pero más compacto para que quepa */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .logo-title { font-size: 15px; }
+  .site-header .navbar-nav { gap: 6px; }
+  .site-header .nav-link { font-size: 14px; padding-left: 6px; padding-right: 6px; }
+  .btn-tema { padding: 8px 14px; font-size: 13px; }
 }
 @media (max-width: 575.98px) {
   .section-title { font-size: 42px; }
