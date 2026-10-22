@@ -1,0 +1,92 @@
+
+/* VARIABLES */
+
+$fondo: #F2E0B6;
+$oscuro: #1A1208;
+$azul: #002395;
+$burdeos: #9B2335;
+$azul-claro: #6C86E8;
+$blanco: #ffffff;
+$tarjeta: #F8EBCC;
+
+/* FUNCION */
+
+@function rem($px) {
+  @return ($px / 16) * 1rem;
+}
+
+/* MIXIN */
+
+@mixin elevar {
+  transition: transform .2s;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+}
+
+body {
+  background-color: $fondo;
+  color: $oscuro;
+}
+
+.site-header {
+  background-color: $oscuro;
+  color: $fondo;
+}
+
+.az {
+  background-color: $azul;
+}
+
+.bl {
+  background-color: $blanco;
+}
+
+.ro {
+  background-color: $burdeos;
+}
+
+.btn-burdeos {
+  background-color: $burdeos;
+  color: $fondo;
+
+  &:hover {
+    background-color: darken($burdeos, 10%);
+  }
+}
+
+.card {
+  background-color: $tarjeta;
+  color: $oscuro;
+  border: 1px solid $oscuro;
+
+  @include elevar;
+}
+
+.section-title {
+  font-size: rem(56);
+}
+
+.rule {
+  background-color: $burdeos;
+}
+
+.eyebrow {
+  color: $azul;
+}
+
+.badge-azul {
+  border: 1px solid $azul;
+  color: $azul;
+}
+
+.visit-cta {
+  background-color: $burdeos;
+  color: $fondo;
+}
+
+footer {
+  background-color: $oscuro;
+  color: $fondo;
+}
