@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<!--
+  Musée de la Révolution Française · versión Bootstrap 5
+ 
+  Layout y componentes: Bootstrap 5.3 (navbar, grid, cards, badges, utilidades).
+  CSS/custom.css: paleta, hero y detalles de diseño en modo claro.
+  CSS/dark.css: solo cambia los colores en modo oscuro.
+  El modo oscuro no usa JavaScript: checkbox escondido + label,
+  y dark.css se fija en si el checkbox está marcado (:has).
+  Bootstrap JS solo se usa para desplegar el menú en móvil.
+-->
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Musée de la Révolution Française</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="CSS/style.css">
+  <link rel="stylesheet" href="CSS/dark.css">
+</head>
+<body>
+ 
+  <!-- Cabecera: logo, pestañas y botón de tema -->
+  <header class="sticky-top">
+    <nav class="navbar navbar-expand-lg site-header" data-bs-theme="dark" aria-label="Secciones del museo">
+      <div class="container">
+ 
+        <a href="#exposicion" class="navbar-brand d-flex align-items-center gap-3 py-0">
+          <div class="tricolor-bar d-flex">
+            <span class="az"></span><span class="bl"></span><span class="ro"></span>
+          </div>
+          <div class="logo-text lh-sm">
+            <p class="mb-0 text-uppercase small">Musée Permanent</p>
+            <h1 class="logo-title mb-0">La Révolution Française</h1>
+          </div>
+        </a>
+ 
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
+                aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+ 
+        <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav mx-auto gap-lg-3">
+            <li class="nav-item"><a class="nav-link tab" href="#exposicion">Exposición</a></li>
+            <li class="nav-item"><a class="nav-link tab" href="#derechos">Derechos</a></li>
+            <li class="nav-item"><a class="nav-link tab" href="#protagonistas">Protagonistas</a></li>
+            <li class="nav-item"><a class="nav-link tab" href="#visitar">Visitar</a></li>
+          </ul>
+ 
+          <!-- Botón de tema sin JavaScript: el checkbox guarda el estado, el label es lo que se ve -->
+          <div class="header-acciones">
+            <input type="checkbox" id="modo-oscuro" class="toggle-input" aria-label="Modo oscuro">
+            <label for="modo-oscuro" class="btn-tema"></label>
+          </div>
+        </div>
+ 
+      </div>
+    </nav>
+  </header>
+ 
+  <main>
+ 
+    <!-- 1: hero y grandes momentos -->
+    <section id="exposicion">
+ 
+      <div class="hero position-relative overflow-hidden">
+        <img class="hero-img position-absolute top-0 start-0 w-100 h-100"
+             src="//Image/revolucionfrancesa.jpg"
+             alt="La Liberté guidant le peuple — Delacroix, 1830. Louvre, París" />
+        <div class="hero-overlay-h position-absolute top-0 start-0 w-100 h-100"></div>
+        <div class="hero-overlay-v position-absolute top-0 start-0 w-100 h-100"></div>
+        <div class="hero-tricolor position-absolute bottom-0 start-0 w-100 d-flex">
+          <span class="az"></span><span class="bl"></span><span class="ro"></span>
+        </div>
+ 
+        <div class="container position-relative h-100 d-flex align-items-center">
+          <div class="hero-text">
+            <div class="eyebrow-line d-flex align-items-center gap-3 mb-2">
+              <div class="rule"></div>
+              <span>1789 — 1799</span>
+            </div>
+            <h2 class="hero-title display-3 mb-3"><span class="text-white">La Revolución</span><br><em>Francesa</em></h2>
+            <p class="hero-desc mb-4">
+              Diez años que sacudieron el Ancien Régime y transformaron para siempre la concepción de la libertad y los derechos del hombre.
+            </p>
+            <a href="#cards" class="btn btn-burdeos rounded-0 px-4 py-2">Explorar la exposición</a>
+          </div>
+        </div>
+      </div>
+ 
+      <div class="grid-section py-5" id="cards">
+        <div class="container">
+ 
+          <div class="section-head row align-items-end g-3 pb-4 mb-4">
+            <div class="col-lg">
+              <div class="eyebrow-line d-flex align-items-center gap-3"><div class="rule"></div><span class="eyebrow">Exposición permanente</span></div>
+              <h2 class="section-title mt-3 mb-0">Grandes momentos<br><em>de la Revolución</em></h2>
+            </div>
+            <div class="col-lg-auto">
+              <span class="chip">1789 – 1799 · Francia</span>
+            </div>
+          </div>
+ 
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+ 
+            <div class="col">
+              <a class="card h-100 text-decoration-none" href="#">
+                <div class="card-img-wrap">
+                  <img src="/Image/GrandesMomentos.jpg" alt="Toma de la Bastilla" />
+                  <div class="card-tag">14 Juillet 1789</div>
+                </div>
+                <div class="card-body">
+                  <h3 class="h5">La Toma de la Bastilla</h3>
+                  <p class="card-text">Más de 800 personas marcharon hacia la fortaleza símbolo del absolutismo. En cuatro horas capitulaba. El 14 de julio se convierte en Fiesta Nacional francesa.</p>
+                </div>
+              </a>
+            </div>
+ 
+            <div class="col">
+              <a class="card h-100 text-decoration-none" href="#derechos">
+                <div class="card-img-wrap">
+                  <img src="/Image/DerechosdelHombre.jpg" alt="Declaración de Derechos del Hombre" />
+                  <div class="card-tag">26 Août 1789</div>
+                </div>
+                <div class="card-body">
+                  <h3 class="h5">Declaración de Derechos del Hombre</h3>
+                  <p class="card-text">Aprobada por la Asamblea Nacional Constituyente. Diecisiete artículos que fundan el derecho moderno y la democracia liberal.</p>
+                </div>
+              </a>
+            </div>
+ 
+            <div class="col">
+              <a class="card h-100 text-decoration-none" href="#">
+                <div class="card-img-wrap">
+                  <img src="/Image/Ejecución.jpg" alt="Ejecución de Luis XVI" />
+                  <div class="card-tag">21 Janvier 1793</div>
+                </div>
+                <div class="card-body">
+                  <h3 class="h5">Ejecución de Luis XVI</h3>
+                  <p class="card-text">Por 361 votos contra 360, la Convención condena al rey. Guillotinado en la Plaza de la Revolución ante una multitud en silencio.</p>
+                </div>
+              </a>
+            </div>
+ 
+            <div class="col">
+              <a class="card h-100 text-decoration-none" href="#">
+                <div class="card-img-wrap">
+                  <img src="/Image/reino.jpg" alt="El Reinado del Terror" />
+                  <div class="card-tag">Sept. 1793 — Jul. 1794</div>
+                </div>
+                <div class="card-body">
+                  <h3 class="h5">El Reinado del Terror</h3>
+                  <p class="card-text">17.000 ejecuciones oficiales. El Comité de Salvación Pública envía a la guillotina a aristócratas, sacerdotes y finalmente a los propios revolucionarios.</p>
+                </div>
+              </a>
+            </div>
+ 
+            <div class="col">
+              <a class="card h-100 text-decoration-none" href="#protagonistas">
+                <div class="card-img-wrap">
+                  <img src="/Image/CaídaRobespierre.JPG" alt="Caída de Robespierre" />
+                  <div class="card-tag">9 Thermidor 1794</div>
+                </div>
+                <div class="card-body">
+                  <h3 class="h5">Caída de Robespierre</h3>
+                  <p class="card-text">La reacción termidoriana pone fin al Terror. Robespierre es arrestado en la Convención y guillotinado al día siguiente sin juicio.</p>
+                </div>
+              </a>
+            </div>
+ 
+            <div class="col">
+              <a class="card h-100 text-decoration-none" href="#">
+                <div class="card-img-wrap">
+                  <img src="/Image/GolpeDeNapoleon.jpg" alt="El Golpe de Napoleón" />
+                  <div class="card-tag">18 Brumaire 1799</div>
+                </div>
+                <div class="card-body">
+                  <h3 class="h5">El Golpe de Napoleón</h3>
+                  <p class="card-text">Bonaparte disuelve el Directorio y toma el poder como Primer Cónsul. La Revolución llega a su fin. Una nueva era comienza.</p>
+                </div>
+              </a>
+            </div>
+ 
+          </div>
+        </div>
+      </div>
+    </section>
+ 
+ 
+    <!-- 2: Derechos del Hombre y del Ciudadano -->
+    <section id="derechos">
+      <div class="grid-section py-5">
+        <div class="container">
+ 
+          <div class="section-head row align-items-end g-3 pb-4 mb-4">
+            <div class="col-lg-6">
+              <div class="eyebrow-line d-flex align-items-center gap-3"><div class="rule"></div><span class="eyebrow">26 Août 1789</span></div>
+              <h2 class="section-title mt-3 mb-0">Derechos del Hombre<br><em>y del Ciudadano</em></h2>
+            </div>
+            <div class="col-lg-6">
+              <p class="section-desc">Diecisiete artículos aprobados por la Asamblea Nacional Constituyente que proclaman la libertad, la igualdad ante la ley y la soberanía de la Nación.</p>
+              <span class="chip">Artículos principales · 6 de 17</span>
+            </div>
+          </div>
+ 
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <div class="col">
+              <article class="card article h-100">
+                <span class="article-num">I</span>
+                <h3>Artículo 1</h3>
+                <h4>Libertad e igualdad</h4>
+                <p>«Los hombres nacen y permanecen libres e iguales en derechos. Las distinciones sociales sólo pueden fundarse en la utilidad común.»</p>
+              </article>
+            </div>
+ 
+            <div class="col">
+              <article class="card article h-100">
+                <span class="article-num">II</span>
+                <h3>Artículo 2</h3>
+                <h4>Derechos naturales</h4>
+                <p>«La finalidad de toda asociación política es la conservación de los derechos naturales e imprescriptibles del hombre. Tales derechos son la libertad, la propiedad, la seguridad y la resistencia a la opresión.»</p>
+              </article>
+            </div>
+ 
+            <div class="col">
+              <article class="card article h-100">
+                <span class="article-num">III</span>
+                <h3>Artículo 3</h3>
+                <h4>Soberanía nacional</h4>
+                <p>«El principio de toda soberanía reside esencialmente en la Nación. Ningún cuerpo, ningún individuo, pueden ejercer una autoridad que no emane expresamente de ella.»</p>
+              </article>
+            </div>
+ 
+            <div class="col">
+              <article class="card article h-100">
+                <span class="article-num">IX</span>
+                <h3>Artículo 9</h3>
+                <h4>Presunción de inocencia</h4>
+                <p>«Puesto que todo hombre se presume inocente mientras no sea declarado culpable, si se juzga indispensable detenerlo, todo rigor que no sea necesario para apoderarse de su persona debe ser severamente reprimido por la ley.»</p>
+              </article>
+            </div>
+ 
+            <div class="col">
+              <article class="card article h-100">
+                <span class="article-num">X</span>
+                <h3>Artículo 10</h3>
+                <h4>Libertad de opinión</h4>
+                <p>«Nadie debe ser incomodado por sus opiniones, inclusive religiosas, a condición de que su manifestación no perturbe el orden público establecido por la ley.»</p>
+              </article>
+            </div>
+ 
+            <div class="col">
+              <article class="card article h-100">
+                <span class="article-num">XI</span>
+                <h3>Artículo 11</h3>
+                <h4>Libertad de expresión</h4>
+                <p>«La libre comunicación de pensamientos y de opiniones es uno de los derechos más preciosos del hombre; en consecuencia, todo ciudadano puede hablar, escribir e imprimir libremente.»</p>
+              </article>
+            </div>
+          </div>
+ 
+          <div class="quote d-flex align-items-start gap-3 mt-5">
+            <span class="quote-mark">“</span>
+            <div>
+              <blockquote class="mb-2">La ley es la expresión de la voluntad general. Todos los ciudadanos tienen derecho a contribuir a su elaboración.</blockquote>
+              <cite>Artículo 6 · Déclaration des Droits de l'Homme et du Citoyen</cite>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+ 
+ 
+    <!-- 3: Protagonistas -->
+    <section id="protagonistas">
+      <div class="grid-section py-5">
+        <div class="container">
+ 
+          <div class="section-head row align-items-end g-3 pb-4 mb-4">
+            <div class="col-lg-6">
+              <div class="eyebrow-line d-flex align-items-center gap-3"><div class="rule"></div><span class="eyebrow">Hommes et femmes</span></div>
+              <h2 class="section-title mt-3 mb-0">Los <em>Protagonistas</em></h2>
+            </div>
+            <div class="col-lg-6">
+              <p class="section-desc">Reyes, tribunos, periodistas y pensadoras. Las figuras que impulsaron, resistieron o cerraron la década revolucionaria.</p>
+              <span class="chip">Rostros de la Revolución · 1743 – 1821</span>
+            </div>
+          </div>
+ 
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <div class="col">
+              <article class="card card-retrato h-100">
+                <div class="card-img-wrap">
+                  <img src="/Image/LuisXVI.jpg" alt="Retrato de Luis XVI" />
+                  <div class="card-tag">1754 – 1793</div>
+                </div>
+                <div class="card-body">
+                  <span class="eyebrow">Rey de Francia</span>
+                  <h3 class="h5">Luis XVI</h3>
+                  <p class="card-text">Último rey del Antiguo Régimen. Tras la fuga frustrada a Varennes (1791) pierde la confianza del pueblo; es juzgado por la Convención y guillotinado en enero de 1793.</p>
+                </div>
+              </article>
+            </div>
+ 
+            <div class="col">
+              <article class="card card-retrato h-100">
+                <div class="card-img-wrap">
+                  <img src="/Image/MariaAntonieta.jpg" alt="Retrato de María Antonieta" />
+                  <div class="card-tag">1755 – 1793</div>
+                </div>
+                <div class="card-body">
+                  <span class="eyebrow">Reina consorte</span>
+                  <h3 class="h5">María Antonieta</h3>
+                  <p class="card-text">Archiduquesa austriaca convertida en símbolo del lujo de Versalles. Encarcelada en la Conciergerie, fue guillotinada el 16 de octubre de 1793.</p>
+                </div>
+              </article>
+            </div>
+ 
+            <div class="col">
+              <article class="card card-retrato h-100">
+                <div class="card-img-wrap">
+                  <img src="/Image/Robespierre.jpg" alt="Retrato de Maximilien Robespierre" />
+                  <div class="card-tag">1758 – 1794</div>
+                </div>
+                <div class="card-body">
+                  <span class="eyebrow">Jacobino</span>
+                  <h3 class="h5">Maximilien Robespierre</h3>
+                  <p class="card-text">«El Incorruptible». Figura dominante del Comité de Salvación Pública durante el Terror. Derribado el 9 de Termidor y guillotinado al día siguiente.</p>
+                </div>
+              </article>
+            </div>
+ 
+            <div class="col">
+              <article class="card card-retrato h-100">
+                <div class="card-img-wrap">
+                  <img src="/Image/Danton.jpg" alt="Retrato de Georges Danton" />
+                  <div class="card-tag">1759 – 1794</div>
+                </div>
+                <div class="card-body">
+                  <span class="eyebrow">Tribuno</span>
+                  <h3 class="h5">Georges Danton</h3>
+                  <p class="card-text">Orador formidable y ministro de Justicia en 1792. Enfrentado a Robespierre por pedir el fin del Terror, fue guillotinado en abril de 1794.</p>
+                </div>
+              </article>
+            </div>
+ 
+            <div class="col">
+              <article class="card card-retrato h-100">
+                <div class="card-img-wrap">
+                  <img src="/Image/Jean-Paul.jpg" alt="Retrato de Jean-Paul Marat" />
+                  <div class="card-tag">1743 – 1793</div>
+                </div>
+                <div class="card-body">
+                  <span class="eyebrow">Periodista</span>
+                  <h3 class="h5">Jean-Paul Marat</h3>
+                  <p class="card-text">Desde <em>L'Ami du peuple</em> agitó a los sectores más radicales. Fue asesinado en su bañera por Charlotte Corday el 13 de julio de 1793.</p>
+                </div>
+              </article>
+            </div>
+ 
+            <div class="col">
+              <article class="card card-retrato h-100">
+                <div class="card-img-wrap">
+                  <img src="/Image/OlympeDeGouges.jpg" alt="Retrato de Olympe de Gouges" />
+                  <div class="card-tag">1748 – 1793</div>
+                </div>
+                <div class="card-body">
+                  <span class="eyebrow">Escritora</span>
+                  <h3 class="h5">Olympe de Gouges</h3>
+                  <p class="card-text">Autora de la <em>Declaración de los Derechos de la Mujer y de la Ciudadana</em> (1791), pionera del feminismo. Guillotinada en noviembre de 1793.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+ 
+ 
+    <!-- 4: Planifica tu visita -->
+    <section id="visitar">
+      <div class="grid-section py-5">
+        <div class="container">
+ 
+          <div class="section-head row align-items-end g-3 pb-4 mb-4">
+            <div class="col-lg-6">
+              <div class="eyebrow-line d-flex align-items-center gap-3"><div class="rule"></div><span class="eyebrow">Informations pratiques</span></div>
+              <h2 class="section-title mt-3 mb-0">Planifica<br><em>tu visita</em></h2>
+            </div>
+            <div class="col-lg-6">
+              <p class="section-desc">El museo se encuentra en el Domaine de Vizille, en Isère, rodeado de un parque histórico junto a los Alpes franceses.</p>
+              <span class="chip">Domaine de Vizille · Isère</span>
+            </div>
+          </div>
+ 
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-5">
+ 
+            <div class="col">
+              <article class="card info h-100">
+                <h3><span class="info-num">01</span> Horario</h3>
+                <ul class="info-list list-unstyled mb-0">
+                  <li><span>Lunes</span><em>Cerrado</em></li>
+                  <li><span>Martes – Sábado</span><strong>10:00 – 18:00</strong></li>
+                  <li><span>Domingo</span><strong>10:00 – 18:00</strong></li>
+                  <li><span>Entrada domingos</span><strong class="destacado">Libre</strong></li>
+                </ul>
+              </article>
+            </div>
+ 
+            <div class="col">
+              <article class="card info h-100">
+                <h3><span class="info-num">02</span> Cómo llegar</h3>
+                <p class="info-dir">Domaine de Vizille<br>38220 Isère — Francia</p>
+                <p class="info-text">A unos 20 km al sur de Grenoble. Acceso en coche y en autobús desde la estación de Grenoble.</p>
+                <a class="info-link mt-auto text-decoration-none" href="https://www.google.com/maps/search/Domaine+de+Vizille" target="_blank" rel="noopener">Ver en el mapa →</a>
+              </article>
+            </div>
+ 
+            <div class="col">
+              <article class="card info h-100">
+                <h3><span class="info-num">03</span> Servicios</h3>
+                <ul class="info-list list-unstyled mb-0">
+                  <li><span>Visitas guiadas</span><span class="badge rounded-pill badge-azul">Grupos</span></li>
+                  <li><span>Talleres escolares</span><span class="badge rounded-pill badge-azul">Con reserva</span></li>
+                  <li><span>Accesibilidad</span><span class="badge rounded-pill badge-azul">PMR</span></li>
+                  <li><span>Parque del castillo</span><span class="badge rounded-pill badge-azul">Incluido</span></li>
+                </ul>
+              </article>
+            </div>
+ 
+          </div>
+ 
+          <div class="visit-cta row align-items-center g-3 mx-0">
+            <div class="col-md">
+              <h3>Liberté · Égalité · Fraternité</h3>
+              <p class="mb-0">Consulta la web oficial para exposiciones temporales y reservas.</p>
+            </div>
+            <div class="col-md-auto">
+              <a href="#exposicion" class="btn-cta">Ver la exposición →</a>
+            </div>
+          </div>
+ 
+        </div>
+      </div>
+    </section>
+ 
+  </main>
+ 
+  <!-- Pie de página -->
+  <footer>
+    <div class="footer-strip d-flex">
+      <span class="az"></span><span class="bl"></span><span class="ro"></span>
+    </div>
+    <div class="container py-5">
+      <div class="row align-items-center g-4 text-center text-lg-start">
+        <div class="col-lg footer-brand">
+          <p>Exposición Permanente</p>
+          <h3>Musée de la Révolution Française</h3>
+          <p class="addr">Domaine de Vizille, 38220 Isère — France</p>
+        </div>
+        <div class="col-lg-auto">
+          <p class="footer-motto mb-0">Liberté · Égalité · Fraternité</p>
+        </div>
+        <div class="col-lg footer-info text-lg-end">
+          <p>Martes a Domingo · 10:00 — 18:00</p>
+          <p>Entrada libre los domingos</p>
+          <p>musee-revolution-francaise.fr</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copy">
+      <p class="mb-0">© 2026 Musée de la Révolution Française — Conseil départemental de l'Isère</p>
+    </div>
+  </footer>
+ 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

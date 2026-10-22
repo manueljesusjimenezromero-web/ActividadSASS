@@ -1,369 +1,132 @@
 /*
-   Colores
-     #F2E0B6  pergamino: fondo de la página y texto sobre fondo oscuro
-     #F8EBCC  pergamino un poco más claro: fondo de las tarjetas
-     #1A1208  tinta: texto, cabecera y pie
-     #9B2335  burdeos: botones, números, detalles y franja de las tarjetas
-     #002395  azul: eyebrows, etiquetas y franja azul de la bandera
-     #6C86E8  azul claro: el borde del botón de tema al llegar con el tabulador
- */
+  Estilos propios sobre Bootstrap 5.3
 
+  Colores (variables)
+    --pergamino  #F2E0B6  fondo de la página y texto sobre fondo oscuro
+    --carta      #F8EBCC  fondo de las tarjetas
+    --tinta      #1A1208  texto, cabecera y pie
+    --burdeos    #9B2335  botones, números, detalles
+    --azul       #002395  eyebrows, etiquetas y franja azul
+    --azul-claro #6C86E8  azul para modo oscuro
 
-  /*header*/
-header {
-  background-color: #1A1208;
-  color: #F2E0B6;
+  El modo oscuro está en dark.css: redefine estas variables cuando el checkbox está marcado.
+*/
 
-  position: sticky;  
-  top: 0;
-  z-index: 10;
+:root {
+  --pergamino: #F2E0B6;
+  --tinta: #1A1208;
+  --burdeos: #9B2335;
+  --azul: #002395;
+  --azul-claro: #6C86E8;
+
+  /* Variables que cambian con el tema */
+  --fondo: #F2E0B6;
+  --texto: #1A1208;
+  --carta: #F8EBCC;
+  --acento: #002395;                       /* eyebrows, badges, cite */
+  --linea: rgba(26, 18, 8, 0.15);
+  --linea-fuerte: #1A1208;                 /* borde de .card con foto */
+  --linea-punteada: rgba(26, 18, 8, 0.2);
+  --fecha: #ffffff;
+  --cita-fondo: rgba(26, 18, 8, 0.05);
+  --cta-fondo: #9B2335;
+  --cta-texto-btn: #9B2335;
 }
 
-.header-inner {
-  max-width: 1200px;
-  margin: 0 auto;                       
-  padding: 15px 30px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: #F2E0B6 ;
-  text-decoration: none;               
-}
-/*Bandera Francesa */
-.tricolor-bar { 
-    display: flex; 
-}
-.tricolor-bar span {
-    width: 8px; height: 32px; 
-}
-
-.az { 
-    background-color: #002395; 
-}    
-.bl { 
-    background-color: white; 
-}            
-.ro { 
-    background-color: #9B2335; 
-}  
-/*Bandera Francesa */
-
-.logo-text p { 
-    font-size: 12px; 
-    text-transform: uppercase; 
-}
-.logo-title { 
-    font-size: 18px; 
-}
-
-.tabs { display: flex; gap: 25px; }
-
-
-.tab {
-  color: #F2E0B6 ;
-  text-decoration: none;
-  padding-bottom: 4px;
-  border-bottom: 2px solid transparent;
-}
-
-.tab:hover {
-  border-bottom-color: currentColor;
-}
+/* ---------- Base ---------- */
+html { scroll-behavior: smooth; }
+section { scroll-margin-top: 70px; }
 
 body {
-  margin: 0;   
-  background-color: #F2E0B6;     
-  color: #1A1208;        
+  font-family: Georgia, "Times New Roman", serif;
+  background-color: var(--fondo);
+  color: var(--texto);
 }
 
-/*Hero*/
+/* ---------- Cabecera ---------- */
+.site-header {
+  background-color: var(--tinta);
+  color: var(--pergamino);
+}
+.site-header .navbar-brand,
+.site-header .nav-link { color: var(--pergamino); }
+
+.tricolor-bar span { width: 8px; height: 32px; }
+
+.az { background-color: var(--azul); }
+.bl { background-color: #ffffff; }
+.ro { background-color: var(--burdeos); }
+
+.logo-text p { font-size: 12px; }
+.logo-title { font-size: 18px; font-family: inherit; }
+
+.tab {
+  padding-bottom: 4px !important;
+  border-bottom: 2px solid transparent;
+}
+.tab:hover,
+.tab:focus { color: var(--pergamino); border-bottom-color: currentColor; }
+
+/* ---------- Botones propios ---------- */
+.btn-burdeos {
+  background-color: var(--burdeos);
+  color: var(--pergamino);
+  border: none;
+}
+.btn-burdeos:hover { background-color: #7d1c2b; color: var(--pergamino); }
+
+.btn-cta,
+.btn-tema {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: var(--pergamino);
+  color: var(--burdeos);
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 999px;
+  transition: transform .2s;
+}
+.btn-cta:hover,
+.btn-tema:hover { transform: translateY(-4px); color: var(--burdeos); }
+
+.btn-tema { cursor: pointer; user-select: none; }
+.btn-tema::after { content: "Cambiar a modo oscuro"; }
+
+.toggle-input { position: absolute; opacity: 0; pointer-events: none; }
+.toggle-input:focus-visible + .btn-tema {
+  outline: 2px solid var(--azul-claro);
+  outline-offset: 2px;
+}
+
+/* ---------- Hero (igual en los dos modos) ---------- */
 .hero {
-  position: relative;
   height: 600px;
   min-height: 450px;
-  overflow: hidden;
-  color: #F2E0B6;
+  color: var(--pergamino);
 }
+.hero-img { object-fit: cover; }
+.hero-overlay-h { background: linear-gradient(rgba(26, 18, 8, 0.9), rgba(26, 18, 8, 0.2)); }
+.hero-overlay-v { background: linear-gradient(rgba(26, 18, 8, 0.7), transparent 50%); }
+.hero-tricolor span { flex: 1; height: 5px; }
+.hero-text { max-width: 550px; }
+.hero-title { font-family: inherit; font-weight: 700; }
+.rule { width: 40px; height: 2px; background-color: var(--burdeos); }
 
-.hero-img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;           
-}
-.hero-overlay-h {             
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient( rgba(26, 18, 8, 0.9), rgba(26, 18, 8, 0.2));
-}
-.hero-overlay-v {            
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient( rgba(26, 18, 8, 0.7), transparent 50%);
-}
-
-/*Franja tricolor en el borde inferior del hero*/
-/*Separando el hero del body*/
-.hero .hero-tricolor {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  display: flex;
-}
-.hero .hero-tricolor span {
-  flex: 1;
-  height: 5px;
-}
-
-.hero-contenido {
-  position: relative;          
-  height: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 30px;
-  display: flex;
-  align-items: center;        
-}
-
-.hero-text { 
-    max-width: 550px; }
-
-.rule {                        
-  width: 40px;
-  height: 2px;
-  background-color:#9B2335;
-}
-
-.hero-title {
-  font-size: 60px;
-  margin-bottom: 15px;
-}
-
-.hero-desc { 
-    margin-bottom: 25px; 
-}
-
-.btn-hero {
-  display: inline-block;
-  background-color:#9B2335;
-  color: #F2E0B6;
-  text-decoration: none;
-  padding: 12px 25px;
-}
-/*Grid de tarjetas*/
-
-.card-body {
-  padding: 18px 20px 22px;
-  flex: 1;
-}
-
-.card-body h3 {
-  margin: 0 0 10px;
-  font-size: 20px;
-}
-
-.card-body p {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.6;
-}
-.grid-section { 
-  padding: 80px 0; 
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 30px;
-
-}
-
+/* ---------- Secciones ---------- */
 .eyebrow {
-  color: #002395;
+  color: var(--acento);
   text-transform: uppercase;
   letter-spacing: 3px;
   font-size: 13px;
 }
 
-/*Rejilla de 3 columnas: la usan todos los apartados*/
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
-}
-
-/*Fondo de las tarjetas de todos los grids: pergamino algo más claro que el fondo #F2E0B6*/
-.card,
-.info,
-.article {
-  background-color: #F8EBCC;
-}
-
-.card {
-  display: flex;
-  flex-direction: column;
-  color: inherit;   /*el texto toma el color del body, también en modo oscuro*/
-  text-decoration: none;
-  border: 1px solid #1A1208;
-  transition: transform .2s;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-}
-/*Contenedor de imagen de la tarjeta*/
-.card-img {                 
-  position: relative;       
-  overflow: hidden;         
-  aspect-ratio: 3 / 2;      
-}    
-.card-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform .4s;
-}
-.card:hover .card-img img { transform: scale(1.05); }
-
-/*Fecha sobre la imagen: se ancla a .card-img (position: relative)*/
-/*Blanco en modo claro; en modo oscuro lo cambia dark.css*/
-.card-tag {
-  position: absolute;
-  left: 12px;
-  bottom: 12px;
-  color: white;
-}
-/* Artículos de la Declaración  */
-/* La tarjeta (borde, franja burdeos, esquinas) la comparte con .info: ver "Pestaña Visitar" */
-
-/* Número romano: mismo estilo que los números 01/02/03 de Visitar */
-.article-num {
-  margin-bottom: 8px;
-  font-size: 14px;
-  font-style: italic;
-}
-
-/* "Artículo 1" = eyebrow */
-.article h3 {
-  margin: 0 0 4px;
-  font-size: 11px;
-  font-weight: normal;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #002395;
-}
-
-/* Título del artículo */
-.article h4 {
-  margin: 0 0 10px;
-  font-size: 22px;
-  font-weight: normal;
-  line-height: 1.2;
-}
-
-/* Texto del artículo */
-.article p {
-  margin: 0;
-  font-size: 13px;
-  line-height: 1.5;
-  font-style: italic;
-}
-
-/* ===== Cita final ===== */
-.quote {
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
-  margin-top: 40px;
-  padding: 28px 32px;
-  border-left: 4px solid #002395;
-  background: rgba(26, 18, 8, 0.05);
-}
-.quote-mark {
-  font-size: 72px;
-  line-height: 0.8;
-  color: #9B2335;
-}
-.quote blockquote {
-  margin: 0 0 10px;
-  font-size: 22px;
-  line-height: 1.4;
-}
-.quote cite {
-  font-size: 11px;
-  font-style: normal;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #002395;
-}
-.article {
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.article:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 18px rgba(26, 18, 8, 0.15);
-}
-/*Tarjetas de retrato (galería de protagonistas)*/
-/*Reutilizan .card y solo ajustan tamaños: foto cuadrada y texto más compacto*/
-.card-retrato .card-img {
-  aspect-ratio: 1 / 1;
-}
-.card-retrato .card-img img {
-  object-position: top;
-}
-.card-retrato .eyebrow {
-  display: block;
-  margin-bottom: 4px;
-  font-size: 11px;
-}
-.card-retrato .card-body {
-  padding: 14px 16px 16px;
-}
-.card-retrato .card-body h3 {
-  margin-bottom: 6px;
-  font-size: 18px;
-}
-.card-retrato .card-body p {
-  font-size: 13px;
-  line-height: 1.5;
-}
-/*Cabecera de sección: título y, debajo, la descripción*/
-/*Compartida por todos los apartados*/
-.section-head {
-  display: grid;
-  gap: 20px;
-  padding-bottom: 40px;
-  margin-bottom: 40px;
-  border-bottom: 1px solid rgba(26, 18, 8, 0.15);
-}
-.section-head .eyebrow-line {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
+.section-head { border-bottom: 1px solid var(--linea); }
 .section-title {
-  margin: 15px 0 0;
   font-size: 56px;
   font-weight: normal;
   line-height: 1.05;
 }
+.section-title em { color: var(--burdeos); }
 .section-desc {
   max-width: 620px;
   margin: 0 0 15px;
@@ -371,13 +134,12 @@ body {
   line-height: 1.6;
 }
 
-/*Etiqueta redonda con un punto rojo delante*/
 .chip {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 6px 14px;
-  border: 1px solid rgba(26, 18, 8, 0.2);
+  border: 1px solid var(--linea-punteada);
   border-radius: 999px;
   font-size: 13px;
 }
@@ -386,50 +148,94 @@ body {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background-color: #9B2335;
+  background-color: var(--burdeos);
 }
 
-/*Acentos burdeos de cabeceras, Derechos y Visitar (un solo color para todos)*/
-.section-title em,
-.article-num,
-.info-num,
-.destacado,
-.info-link {
-  color: #9B2335;
+/* ---------- Tarjetas (Bootstrap .card adaptada) ---------- */
+.card {
+  --bs-card-bg: var(--carta);
+  --bs-card-color: var(--texto);
+  --bs-card-border-color: var(--linea-fuerte);
+  --bs-card-border-radius: 0;
+  --bs-card-inner-border-radius: 0;
+  color: var(--texto);
+  transition: transform .2s;
+}
+.card:hover { transform: translateY(-4px); }
+
+.card-body { padding: 18px 20px 22px; }
+.card-body h3 { font-family: inherit; }
+.card-text { font-size: 14px; line-height: 1.6; }
+
+.card-img-wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3 / 2;
+}
+.card-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .4s;
+}
+.card:hover .card-img-wrap img { transform: scale(1.05); }
+
+.card-tag {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  color: var(--fecha);
 }
 
-/*Pestaña Visitar*/
-/*Tres tarjetas de información: reutiliza .grid y solo añade el margen inferior*/
-.visit-grid {
-  margin-bottom: 40px;
-}
-/*Tarjeta de texto: la comparten Visitar (.info) y Derechos (.article)*/
-.info,
-.article {
-  display: flex;
-  flex-direction: column;
+/* Retratos */
+.card-retrato .card-img-wrap { aspect-ratio: 1 / 1; }
+.card-retrato .card-img-wrap img { object-position: top; }
+.card-retrato .eyebrow { display: block; margin-bottom: 4px; font-size: 11px; }
+.card-retrato .card-body { padding: 14px 16px 16px; }
+.card-retrato .card-text { font-size: 13px; line-height: 1.5; }
+
+/* Tarjetas de texto: Derechos (.article) y Visitar (.info) */
+.card.article,
+.card.info {
   padding: 25px;
-  border: 1px solid rgba(26, 18, 8, 0.15);
-  border-top: 3px solid #9B2335;
+  border: 1px solid var(--linea);
+  border-top: 3px solid var(--burdeos);
   border-radius: 8px;
 }
-.info h3 {
-  margin: 0 0 20px;
-  font-size: 26px;
-  font-weight: normal;
-}
+.article:hover { box-shadow: 0 8px 18px rgba(26, 18, 8, 0.15); }
+
+.article-num,
 .info-num {
-  margin-right: 6px;
+  color: var(--burdeos);
   font-size: 14px;
   font-style: italic;
 }
+.article-num { margin-bottom: 8px; }
+.info-num { margin-right: 6px; }
 
-/*Filas de las listas: texto a la izquierda, valor a la derecha*/
-.info-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+.article h3 {
+  margin: 0 0 4px;
+  font-size: 11px;
+  font-weight: normal;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--acento);
 }
+.article h4 {
+  margin: 0 0 10px;
+  font-size: 22px;
+  font-weight: normal;
+  line-height: 1.2;
+}
+.article p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.info h3 { margin: 0 0 20px; font-size: 26px; font-weight: normal; }
 .info-list li {
   display: flex;
   justify-content: space-between;
@@ -437,216 +243,80 @@ body {
   gap: 15px;
   padding: 12px 0;
   font-size: 14px;
-  border-bottom: 1px dashed rgba(26, 18, 8, 0.2);
+  border-bottom: 1px dashed var(--linea-punteada);
 }
-.info-list li:last-child {
-  border-bottom: none;
-}
-.info-list em {
-  opacity: 0.7;
-}
-.badge {
-  padding: 3px 10px;
-  border: 1px solid #002395;
-  border-radius: 999px;
-  color: #002395;
+.info-list li:last-child { border-bottom: none; }
+.info-list em { opacity: 0.7; }
+.destacado { color: var(--burdeos); }
+
+.badge-azul {
+  background: transparent;
+  border: 1px solid var(--acento);
+  color: var(--acento);
   font-size: 12px;
-  font-weight: bold;
 }
 
-/*Tarjeta "Cómo llegar"*/
-.info-dir {
-  margin: 0 0 15px;
-  font-weight: bold;
-  line-height: 1.6;
-}
-.info-text {
-  margin: 0 0 20px;
-  font-size: 14px;
-  line-height: 1.6;
-  opacity: 0.8;
-}
+.info-dir { margin: 0 0 15px; font-weight: bold; line-height: 1.6; }
+.info-text { margin: 0 0 20px; font-size: 14px; line-height: 1.6; opacity: 0.8; }
 .info-link {
   align-self: flex-start;
-  margin-top: auto;
+  color: var(--burdeos);
   font-size: 14px;
   font-weight: bold;
 }
 
-/*Llamada a la acción: texto | botón (1fr auto)*/
+/* ---------- Cita ---------- */
+.quote {
+  padding: 28px 32px;
+  border-left: 4px solid var(--acento);
+  background: var(--cita-fondo);
+}
+.quote-mark { font-size: 72px; line-height: 0.8; color: var(--burdeos); }
+.quote blockquote { font-size: 22px; line-height: 1.4; }
+.quote cite {
+  font-size: 11px;
+  font-style: normal;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--acento);
+}
+
+/* ---------- Llamada a la acción ---------- */
 .visit-cta {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: 30px;
-  padding: 35px 45px;
-  background-color: #9B2335;
-  color: #F2E0B6;
+  padding: 35px 25px;
+  background-color: var(--cta-fondo);
+  color: var(--pergamino);
   border-radius: 8px;
 }
-.visit-cta h3 {
-  margin: 0 0 6px;
-  font-size: 28px;
-  font-style: italic;
-  font-weight: normal;
-}
-.visit-cta p {
-  margin: 0;
-  font-size: 14px;
-  opacity: 0.85;
-}
-/*Botón píldora pergamino: lo comparten "Ver la exposición" y el botón de tema*/
-.btn-cta,
-.btn-tema {
-  display: inline-block;   /*transform no funciona en elementos en línea (a, label)*/
-  padding: 12px 25px;
-  background-color: #F2E0B6;
-  color: #9B2335;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 999px;
-  transition: transform .2s;
-}
-/*Hover flotante, igual que las tarjetas de los grids*/
-.btn-cta:hover,
-.btn-tema:hover {
-  transform: translateY(-4px);
-}
+.visit-cta h3 { margin: 0 0 6px; font-size: 28px; font-style: italic; font-weight: normal; }
+.visit-cta p { font-size: 14px; opacity: 0.85; }
+.visit-cta .btn-cta { color: var(--cta-texto-btn); }
 
-/*Footer*/
-footer {
-  background-color: #1A1208;
-  color: #F2E0B6;
-}
+/* ---------- Footer (igual en los dos modos) ---------- */
+footer { background-color: var(--tinta); color: var(--pergamino); }
+.footer-strip span { flex: 1; height: 5px; }
 
-/*Franja tricolor superior del footer*/
-.footer-strip {
-  display: flex;
-}
-.footer-strip span {
-  flex: 1;
-  height: 5px;
-}
-
-/*3 columnas: marca | lema | información (mismo patrón que .header-inner)*/
-.footer-main {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 45px 30px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 30px;
-}
-
-.footer-brand p {
-  margin: 0;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-.footer-brand h3 {
-  margin: 6px 0 10px;
-  font-size: 22px;
-}
-.footer-brand .addr {
-  font-size: 13px;
-  opacity: 0.7;
-}
-
-.footer-motto {
-  margin: 0;
-  font-size: 18px;
-  font-style: italic;
-  letter-spacing: 2px;
-}
-
-.footer-info {
-  text-align: right;
-  font-size: 13px;
-}
-.footer-info p {
-  margin: 0 0 6px;
-}
-
+.footer-brand p { margin: 0; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; }
+.footer-brand h3 { margin: 6px 0 10px; font-size: 22px; }
+.footer-brand .addr { font-size: 13px; opacity: 0.7; text-transform: none; letter-spacing: normal; }
+.footer-motto { font-size: 18px; font-style: italic; letter-spacing: 2px; }
+.footer-info { font-size: 13px; }
+.footer-info p { margin: 0 0 6px; }
 .footer-copy {
   border-top: 1px solid rgba(242, 224, 182, 0.15);
   padding: 15px 30px;
   text-align: center;
   font-size: 12px;
 }
-.footer-copy p {
-  margin: 0;
+
+/* ---------- Responsive ---------- */
+@media (min-width: 992px) {
+  .visit-cta { padding: 35px 45px; }
 }
-
-/*Botón de cambio de tema (sin JS)*/
-/*El checkbox guarda el estado y queda invisible; el label es el botón que se ve*/
-.toggle-input {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
+@media (max-width: 991.98px) {
+  .header-acciones { padding: 10px 0 4px; }
 }
-
-/*El aspecto lo comparte con .btn-cta (ver "Llamada a la acción")*/
-.btn-tema {
-  cursor: pointer;
-  user-select: none;
-}
-
-/*Contorno al llegar con Tab: + selecciona el label que va justo después del input*/
-.toggle-input:focus-visible + .btn-tema {
-  outline: 2px solid #6C86E8;
-  outline-offset: 2px;
-}
-
-.btn-tema::after {
-  content: "Cambiar a modo oscuro";
-}
-
-
-/*RESPONSIVE (al final para que gane a las reglas anteriores)*/
-/*Escritorio (más de 900px): 3 columnas, el diseño base*/
-
-/*Tablet / pantalla pequeña: grids de 2 en 2 y pestañas en una segunda fila*/
-@media (max-width: 900px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .header-inner {
-    flex-wrap: wrap;
-    row-gap: 12px;
-  }
-  .tabs {
-    order: 3;   /*pasa detrás del botón: logo y botón arriba, pestañas abajo*/
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-/*Móvil: grids de 1 en 1 y cabecera más compacta*/
-@media (max-width: 640px) {
-  .grid,
-  .visit-cta {
-    grid-template-columns: 1fr;
-  }
-  .header-inner,
-  .container {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  .tabs {
-    flex-wrap: wrap;
-    gap: 8px 18px;
-    font-size: 14px;
-  }
-  .btn-tema {
-    padding: 8px 12px;
-    font-size: 13px;
-  }
-  .section-title {
-    font-size: 42px;
-  }
-  .visit-cta {
-    padding: 30px 25px;
-  }
+@media (max-width: 575.98px) {
+  .section-title { font-size: 42px; }
+  .btn-tema { padding: 8px 12px; font-size: 13px; }
 }
