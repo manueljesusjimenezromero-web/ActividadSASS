@@ -11,7 +11,7 @@ body:has(#modo-oscuro:checked) {
 
  
 body:has(#modo-oscuro:checked) .btn-tema::after {
-  content: "Cambiar a modo claro";
+  content: "modo claro";
 }
  
  
