@@ -20,7 +20,7 @@ $tarjeta: #F8EBCC;
   &:hover { transform: translateY(-4px); }
 }
 
-// Función propia para calcular espacios
+
 @function espacio($n) {
   @return $n * 4px;
 }
@@ -42,7 +42,8 @@ body {
   .navbar-brand, .nav-link { color: $crema; }
 }
 
-.tricolor-bar span { width: 8px; height: 32px; }
+.tricolor-bar span { width: 8px; 
+  height: 32px; }
 .az { background: $azul; }
 .bl { background: $blanco; }
 .ro { background: $burdeos; }
@@ -97,10 +98,12 @@ body {
 .hero-img { object-fit: cover; }
 .hero-overlay-h { background: linear-gradient(rgba(26,18,8,.9), rgba(26,18,8,.2)); }
 .hero-overlay-v { background: linear-gradient(rgba(26,18,8,.7), transparent 50%); }
-.hero-tricolor span { flex: 1; height: 5px; }
+.hero-tricolor span { flex: 1; 
+  height: 5px; }
 .hero-text { max-width: 550px; }
 .hero-title { font-weight: 700; }
-.rule { width: 40px; height: 2px; background: $burdeos; }
+.rule { width: 40px; 
+  height: 2px; background: $burdeos; }
 
 // Secciones
 .eyebrow {
@@ -145,7 +148,7 @@ body {
   }
 }
 
-// Tarjetas
+
 .card {
   background: $tarjeta;
   color: $negro;
@@ -224,7 +227,7 @@ body {
 .info-text { margin: 0 0 20px; font-size: 14px; line-height: 1.6; opacity: .8; }
 .info-link { align-self: flex-start; color: $burdeos; font-size: 14px; font-weight: bold; }
 
-// Cita y llamada a la acción
+
 .quote {
   padding: 28px 32px;
   border-left: 4px solid $azul;
@@ -247,19 +250,40 @@ body {
   .btn-cta { color: $burdeos; }
 }
 
-// Footer
-footer { background: $negro; color: $crema; }
-.footer-strip span { flex: 1; height: 5px; }
-.footer-brand p { margin: 0; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; }
-.footer-brand h3 { margin: 6px 0 10px; font-size: 22px; }
-.footer-brand .addr { font-size: 13px; opacity: .7; text-transform: none; letter-spacing: normal; }
-.footer-motto { font-size: 18px; font-style: italic; letter-spacing: 2px; }
-.footer-info { font-size: 13px; p { margin: 0 0 6px; } }
-.footer-copy { border-top: 1px solid rgba($crema,.15); padding: 15px 30px; text-align: center; font-size: 12px; }
+
+footer { background: $negro; 
+      color: $crema; }
+
+.footer-strip span { flex: 1; 
+      height: 5px; }
+
+.footer-brand p { margin: 0; 
+      font-size: 12px; 
+      text-transform: uppercase; 
+      letter-spacing: 2px; }
+
+.footer-brand h3 { margin: 6px 0 10px; 
+      font-size: 22px; }
+
+.footer-brand .addr { font-size: 13px; 
+      opacity: .7; 
+      text-transform: none; 
+      letter-spacing: normal; }
+.footer-motto { font-size: 18px; 
+      font-style: italic; 
+      letter-spacing: 2px; }
+.footer-info { font-size: 13px; 
+      p { margin: 0 0 6px; } }
+.footer-copy { border-top: 1px solid rgba($crema,.15); 
+      padding: 15px 30px; 
+      text-align: center; 
+      font-size: 12px; }
 
 // Responsive
-@media (min-width: 992px) { .visit-cta { padding: 35px 45px; } }
-@media (max-width: 991.98px) { .header-acciones { padding: 10px 0 4px; } }
+@media (min-width: 992px) { 
+  .visit-cta { padding: 35px 45px; } }
+@media (max-width: 991.98px) { 
+  .header-acciones { padding: 10px 0 4px; } }
 @media (max-width: 575.98px) {
   .section-title { font-size: 42px; }
   .btn-tema { padding: 8px 12px; font-size: 13px; }
